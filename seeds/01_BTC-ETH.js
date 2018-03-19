@@ -8,7 +8,7 @@ exports.seed = function(knex, Promise) {
       return knex('BTC_ETH').insert([
         {id: 1, type: 'bids', quantity: '2', rate: '0.06', exchange: 'Bittrex'},
         {id: 2, type: 'bids', quantity: '1', rate: '0.0656', exchange: 'Bittrex'},
-        {id: 3, type: 'asks', quantity: '5', rate: '0.08', exchange: 'Bittrex'},
+        {id: 3, type: 'asks', quantity: '5', rate: '0.08', exchange: 'Bittrex'}
       ]);
     });
 };

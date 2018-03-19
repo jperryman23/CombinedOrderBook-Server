@@ -21,4 +21,7 @@ module.exports = {
         return knex('BTC_ETH').insert(order, '*');
     },
 
+    update(id, order){
+        return knex('BTC_ETH').where('id', id).update(order, '*');
+    },
 }

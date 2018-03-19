@@ -5,7 +5,7 @@ module.exports = {
   development: {
     client: 'pg',
     connection: 'postgres://localhost/combined-order-book'
-  },
+},
 
   test: {
     client: 'pg',

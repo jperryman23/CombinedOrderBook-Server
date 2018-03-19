@@ -24,4 +24,8 @@ module.exports = {
     update(id, order){
         return knex('BTC_ETH').where('id', id).update(order, '*');
     },
+
+    delete(id) {
+        return knex('BTC_ETH').where('id', id).del();
+}
 }

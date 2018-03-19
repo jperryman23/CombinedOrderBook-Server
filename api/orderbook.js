@@ -35,7 +35,6 @@ router.get('/:id', isValidId, (req, res, next)=> {
     })
 })
 
-
 router.post('/', (req,res,next) =>{
     if(validOrder(req.body)){
         queries.addOrder(req.body).then(orders =>{
@@ -54,6 +53,14 @@ router.put('/:id', isValidId, (req, res, next) => {
     } else {
         next(new Error('Invalid order'))
     }
+})
+
+router.delete('/:id', isValidId,  (req, res) =>{
+    queries.delete(req.params.id).then(()=>{
+        res.json({
+            delete:true
+        })
+    })
 })
 
 module.exports = router;

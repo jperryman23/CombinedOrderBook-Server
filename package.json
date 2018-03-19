@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon",
-    "test": "(dropdb --if-exists test-combined-order-book && createdb test-combined-order-book) && NODE_ENV=test mocha"
+    "test": "(dropdb --if-exists test-combined-order-book  && createdb test-combined-order-book) && NODE_ENV=test mocha"
   },
   "dependencies": {
     "body-parser": "~1.18.2",

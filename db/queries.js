@@ -1,5 +1,5 @@
-// const knex = require('./knex') //the connection
-const pg = require('./knex')
+// const knex = require('./knex') the connection
+const knex = require('./knex')
 
 // module.exports = {
 //     getAll(){
@@ -7,11 +7,18 @@ const pg = require('./knex')
 //     }
 // }
 
-
-function getAll(){
-    return pg('BTC_ETH').select()
-}
-
 module.exports = {
-    getAll
+
+    getAll() {
+        return knex('BTC_ETH').select('*')
+    },
+
+    getOne(id) {
+        return knex('BTC_ETH').where('id', id).first()
+    },
+
+    addOrder(order){
+        return knex('BTC_ETH').insert(order, '*');
+    },
+
 }

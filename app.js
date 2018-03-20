@@ -5,11 +5,18 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-
-
 const app = express();
 
+var port = 5000;
+app.listen(port, () => {
+    console.log('API listening on port ' + port);
+});
+
+
 const orderbook = require('./api/orderbook');
+const poloniex = require('./api/poloniex');
+const bittrex = require('./api/bittrex');
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -18,9 +25,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// app.use(bodyParser.urlencoded({extended: false}))
-//
-// app.use(bodyParser.json())
 
 //Mount the router
 

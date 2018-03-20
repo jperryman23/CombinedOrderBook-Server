@@ -4,6 +4,7 @@ const queries = require('../db/queries');
 
 
 
+
 function isValidId(req, res, next) {
     if(!isNaN(req.params.id)) return next();
     next(new Error('Invalid ID'));
@@ -35,6 +36,7 @@ router.get('/:id', isValidId, (req, res, next)=> {
     })
 })
 
+
 router.post('/', (req,res,next) =>{
     if(validOrder(req.body)){
         queries.addOrder(req.body).then(orders =>{
@@ -62,5 +64,7 @@ router.delete('/:id', isValidId,  (req, res) =>{
         })
     })
 })
+
+
 
 module.exports = router;

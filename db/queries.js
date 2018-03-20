@@ -27,5 +27,27 @@ module.exports = {
 
     delete(id) {
         return knex('BTC_ETH').where('id', id).del();
-}
+    },
+
+    // addPoloOrders(order){
+    //     return knex('BTC_ETH').insert(order,
+    //         {
+    //             type: 'asks',
+    //             rate: poloAsks[0],
+    //             quantity: poloAsks[1],
+    //             exchange: 'poloniex'
+    //         }
+    //     ).then(result) => {
+    //         res.json({succes: true, message: 'added'})
+    //     })
+    // },
+
+
+    // addPoloAsks(body)
+
+    //inerting fucntion ()
+
+
+
+
 }

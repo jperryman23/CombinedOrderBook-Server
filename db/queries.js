@@ -39,7 +39,7 @@ module.exports = {
     },
 
     deleteAllPolo() {
-        return pg('bittrex_orderbook').del()
+        return pg('poloniex_orderbook').del()
     },
 
     // addPoloOrders(order){

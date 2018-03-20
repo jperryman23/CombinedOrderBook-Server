@@ -1,7 +1,6 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('bittrex_orderbook', (table) =>{
-      table.increments()
       table.text('type')
       table.float('quantity')
       table.float('rate')

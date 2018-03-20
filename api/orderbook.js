@@ -1,6 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const queries = require('../db/queries');
+const request = require('request')
+
+const path = require('path');
+const bodyParser = require('body-parser');
+const pg = require('../db/knex')
+const https = require('https');
+
 
 
 
@@ -64,6 +71,16 @@ router.delete('/:id', isValidId,  (req, res) =>{
         })
     })
 })
+
+// const url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10'
+// router.get('/', (req, res, next) =>{
+//     request('https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10', function(err, result, body){
+//         // console.log(body);
+//         const json = JSON.parse(body);
+//         res.json(json);
+//         console.log(json);
+//     })
+// }
 
 
 

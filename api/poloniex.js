@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 //will run and update when you hit the route:
 // http://localhost:5000/api/poloniex
 
-let url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10'
+let url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH'
 
 router.get('/', (req, response, next) => {
 
@@ -29,13 +29,12 @@ router.get('/', (req, response, next) => {
         res.on('end', () => {
             body = JSON.parse(body);
             // response.json(body.result.buy)
-            // console.log(body);
 
             const poloBids = body.bids.map((bid) => {
                 return {
                     type: 'bids',
-                    rate: parseFloat(bid[0]),
                     quantity: bid[1],
+                    rate: parseFloat(bid[0]),
                     exchange: 'poloniex'
                 }
             })
@@ -43,8 +42,8 @@ router.get('/', (req, response, next) => {
             const poloAsks = body.asks.map((ask) => {
                 return {
                     type: 'asks',
-                    rate: parseFloat(ask[0]),
                     quantity: ask[1],
+                    rate: parseFloat(ask[0]),
                     exchange: 'poloniex'
                 }
             })

@@ -1,8 +1,8 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('poloniex_orderbook', (table) =>{
       table.text('type')
-      table.float('rate')
       table.float('quantity')
+      table.float('rate')
       table.text('exchange')
 
   })

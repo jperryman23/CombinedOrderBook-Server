@@ -42,7 +42,7 @@ app.use(cookieParser());
 
 //Mount the router
 
-// app.use('/api/orderbook', orderbook);
+app.use('/api/orderbook', orderbook);
 app.use('/api/bittrex', bittrex);
 app.use('/api/poloniex', poloniex);
 

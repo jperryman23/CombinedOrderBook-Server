@@ -5,7 +5,7 @@ const https = require('https');
 const path = require('path');
 const bodyParser = require('body-parser');
 var request = require('request');
-// var url = require('url')
+
 
 const app = express();
 
@@ -14,45 +14,38 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 var url = 'https://bittrex.com/api/v1.1/public/getorderbook?&market=BTC-ETH&type=both';
 
-
-
-router.get('/', (req, response, next) =>{
+router.get('/', (req, response, next) => {
     var url = 'https://bittrex.com/api/v1.1/public/getorderbook?&market=BTC-ETH&type=both';
-    https.get(url, (res) =>{
+    https.get(url, (res) => {
         res.setEncoding('utf8');
         let body = "";
 
-        res.on('data', (data)=>{
+        res.on('data', (data) => {
             body += data;
-    });
-        res.on('end', ()=>{
+        });
+        res.on('end', () => {
             body = JSON.parse(body);
-             // response.json(body.result.buy)
+            // response.json(body.result.buy)
 
-             const data = body.result.buy.map( (buy)=>{
-                 return {
-                     type: 'bids',
-                     quantity: buy.Quantity,
-                     rate: buy.Rate,
-                     exchange: 'bittrex'
-                 }
-             })
+            const bittrexBids = body.result.buy.map((buy) => {
+                return {type: 'bids', quantity: buy.Quantity, rate: buy.Rate, exchange: 'bittrex'}
+            })
 
-            queries.deleteAll().then(()=>{
-                queries.addOrder(data)
-                .then( (rows) =>{
-                    // console.log(arguments);
+            const bittrexAsks = body.result.sell.map((sell) => {
+                return {type: 'asks', quantity: sell.Quantity, rate: sell.Rate, exchange: 'bittrex'}
+            })
+
+            const bittrexOrders = bittrexBids.concat(bittrexAsks);
+
+            queries.deleteAllBittrex().then(() => {
+                queries.addOrderBittrex(bittrexOrders).then((rows) => {
                     response.json(rows)
                 })
             })
 
-
         })
     })
-
 });
-
-
 
 
 module.exports = router;

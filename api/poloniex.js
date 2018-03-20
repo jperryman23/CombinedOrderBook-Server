@@ -7,7 +7,10 @@ const bodyParser = require('body-parser');
 var request = require('request');
 const pg = require('../db/knex')
 // var url = require('url')
-
+const ezc = require('express-zero-config');
+const request = require('request');
+const router = ezc.createRouter();
+const fetch = require('node-fetch');
 const app = express();
 
 app.use(bodyParser.json());
@@ -50,8 +53,9 @@ https.get(url, (res) => {
         poloOrders = JSON.parse(poloOrders);
         var poloAsks = poloOrders.asks[0]
 
-        console.log(poloAsks[0]);
+        console.log(poloAsks);
         var newOrder = {
+
         		type: 'asks',
         	    rate: poloAsks[0],
         	    quantity: poloAsks[1],
@@ -60,16 +64,23 @@ https.get(url, (res) => {
 
             console.log(newOrder);
 
-            function addPoloOrders(obj) {
-            return pg('poloniex_asks').insert(obj)
-        }
+            // app.post('/', function (req, res) {
+            //   res.send('newOrder');
+            // })
 
-        addPoloOrders(newOrder);
+        // router.post('/', (newOrder,res,next) =>{
+        //     if(validOrder(newOrder.body)){
+        //         queries.addPoloOrders(newOrder.body).then(orders =>{
+        //             res.json(orders[0])
+        //         })
+        //     } else {
+        //         next(new Error('Invalid order'))
+        //     }
+        // });
 
-
-        // router.post('/api/poloniex', (req,res,next) =>{
+        // router.post('/', (req,res,next) =>{
         //
-        //         queries.addPoloOrders(poloAsks)
+        //     queries.addPoloOrders(newOrder)
         //         .then(orders =>{
         //             res.json(orders[0])
         //         })
@@ -78,6 +89,27 @@ https.get(url, (res) => {
 
 })
 });
+
+
+const url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10'
+router.get('/', (req, res, next) =>{
+    request('https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10', function(err, result, body){
+        console.log(body);
+        const json = JSON.parse(body);
+        res.json(json);
+    })
+})
+
+router.get('/fetchOrders', (req, res) =>{
+    fetch(url)
+    .then(function(res){
+        return res.json();
+    }).then(function(json){
+        res.json(json);
+    })
+})
+
+ezc.startServer(router);
 
 
 // router.post('/api/poloniex', (req, res) => {

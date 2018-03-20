@@ -3,34 +3,34 @@ const pg = require('./knex')
 
 // module.exports = {
 //     getAll(){
-//         return pg('BTC_ETH').select()
+//         return pg('bittrex_orderbook').select()
 //     }
 // }
 
 module.exports = {
 
     getAll() {
-        return pg('BTC_ETH').select('*')
+        return pg('bittrex_orderbook').select('*')
     },
 
     getOne(id) {
-        return pg('BTC_ETH').where('id', id).first()
+        return pg('bittrex_orderbook').where('id', id).first()
     },
 
     addOrder(order){
-        return pg('BTC_ETH').insert(order, '*');
+        return pg('bittrex_orderbook').insert(order, '*');
     },
 
     update(id, order){
-        return pg('BTC_ETH').where('id', id).update(order, '*');
+        return pg('bittrex_orderbook').where('id', id).update(order, '*');
     },
 
     delete(id) {
-        return pg('BTC_ETH').where('id', id).del();
+        return pg('bittrex_orderbook').where('id', id).del();
     },
 
     // addPoloOrders(order){
-    //     return pg('BTC_ETH').insert(order,
+    //     return pg('poloniex_orderbook').insert(order,
     //         {
     //             type: 'asks',
     //             rate: poloAsks[0],
@@ -43,7 +43,7 @@ module.exports = {
     // },
 
     addPoloOrders(obj) {
-	return pg('poloniex_asks').insert(obj)
+	return pg('poloniex_orderbook').insert(obj, '*')
 }
 
 

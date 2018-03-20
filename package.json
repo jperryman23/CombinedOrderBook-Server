@@ -12,8 +12,10 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "express-zero-config": "^1.1.2",
     "knex": "^0.14.4",
     "morgan": "~1.9.0",
+    "node-fetch": "^2.1.1",
     "pg": "^7.4.1",
     "request": "^2.85.0",
     "serve-favicon": "~2.4.5"

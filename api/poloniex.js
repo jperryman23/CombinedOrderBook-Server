@@ -4,20 +4,18 @@ const queries = require('../db/queries');
 const https = require('https');
 const path = require('path');
 const bodyParser = require('body-parser');
-var request = require('request');
-// var url = require('url')
+const request = require('request');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+//POLONIEX ORDERBOOK API
+//will run and update when you hit the route:
+// http://localhost:5000/api/poloniex
 
-
-
-const url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10'
+let url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10'
 
 router.get('/', (req, response, next) => {
 

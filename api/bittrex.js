@@ -4,18 +4,21 @@ const queries = require('../db/queries');
 const https = require('https');
 const path = require('path');
 const bodyParser = require('body-parser');
-var request = require('request');
-
+const request = require('request');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-var url = 'https://bittrex.com/api/v1.1/public/getorderbook?&market=BTC-ETH&type=both';
+// BITTREX ORDERBOOK API
+// will run and update when you hit the route:
+// http://localhost:5000/api/bittrex
+
+let url = 'https://bittrex.com/api/v1.1/public/getorderbook?&market=BTC-ETH&type=both';
 
 router.get('/', (req, response, next) => {
-    var url = 'https://bittrex.com/api/v1.1/public/getorderbook?&market=BTC-ETH&type=both';
+
     https.get(url, (res) => {
         res.setEncoding('utf8');
         let body = "";

@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('BTC_ETH', (table) =>{
+  return knex.schema.createTable('bittrex_orderbook', (table) =>{
       table.increments()
       table.text('type')
       table.float('quantity')
@@ -11,5 +11,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('BTC_ETH')
+  return knex.schema.dropTable('bittrex_orderbook')
 };

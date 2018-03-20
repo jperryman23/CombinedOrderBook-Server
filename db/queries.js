@@ -1,5 +1,5 @@
-// const knex = require('./knex') the connection
-const knex = require('./knex')
+// const pg = require('./pg') the connection
+const pg = require('./knex')
 
 // module.exports = {
 //     getAll(){
@@ -10,27 +10,27 @@ const knex = require('./knex')
 module.exports = {
 
     getAll() {
-        return knex('BTC_ETH').select('*')
+        return pg('BTC_ETH').select('*')
     },
 
     getOne(id) {
-        return knex('BTC_ETH').where('id', id).first()
+        return pg('BTC_ETH').where('id', id).first()
     },
 
     addOrder(order){
-        return knex('BTC_ETH').insert(order, '*');
+        return pg('BTC_ETH').insert(order, '*');
     },
 
     update(id, order){
-        return knex('BTC_ETH').where('id', id).update(order, '*');
+        return pg('BTC_ETH').where('id', id).update(order, '*');
     },
 
     delete(id) {
-        return knex('BTC_ETH').where('id', id).del();
+        return pg('BTC_ETH').where('id', id).del();
     },
 
     // addPoloOrders(order){
-    //     return knex('BTC_ETH').insert(order,
+    //     return pg('BTC_ETH').insert(order,
     //         {
     //             type: 'asks',
     //             rate: poloAsks[0],
@@ -42,10 +42,15 @@ module.exports = {
     //     })
     // },
 
+    addPoloOrders(obj) {
+	return pg('poloniex_asks').insert(obj)
+}
+
 
     // addPoloAsks(body)
 
     //inerting fucntion ()
+
 
 
 

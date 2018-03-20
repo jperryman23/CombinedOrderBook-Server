@@ -43,8 +43,8 @@ https.get(url, (res) =>{
         body = JSON.parse(body);
 
 
-         console.log(body.result.buy[0]);// just the first object key pair for the buy orders
-         console.log(body.result.buy[0]["Quantity"]);// just the quantity of the first buy order
+         // console.log(body.result.buy[0]);// just the first object key pair for the buy orders
+         // console.log(body.result.buy[0]["Quantity"]);// just the quantity of the first buy order
          // console.log(body.result"quantity"]// just the quantity of the first buy order
          // console.log(body.result.sell[0]); //just the first object key pair for the sell orders
 

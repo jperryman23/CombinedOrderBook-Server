@@ -1,8 +1,8 @@
 exports.seed = function(knex, Promise) {
     // Deletes ALL existing entries
-    return knex('poloniex_asks').del().then(function() {
+    return knex('poloniex_orderbook').del().then(function() {
         // Inserts seed entries
-        return knex('poloniex_asks').insert([
+        return knex('poloniex_orderbook').insert([
             {
                 id: 1,
                 type: 'asks',

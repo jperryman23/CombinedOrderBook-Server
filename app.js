@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const pg = require('./db/knex')
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.use(cookieParser());
 //Mount the router
 
 app.use('/api/orderbook', orderbook);
+// app.use('/api/bittrex', bittrex);
+// app.use('/api/poloniex', poloniex);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

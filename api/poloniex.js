@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const inserts = require('../db/inserts');
+const inserts = require('../db/queries');
 const https = require('https');
 const path = require('path');
 const bodyParser = require('body-parser');
 var request = require('request');
+const pg = require('../db/knex')
 // var url = require('url')
 
 const app = express();
@@ -36,7 +37,7 @@ var url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_
 
 
 
-
+var url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10';
 https.get(url, (res) => {
     res.setEncoding('utf8');
     let poloOrders = [];
@@ -47,12 +48,53 @@ https.get(url, (res) => {
     });
     res.on('end', () => {
         poloOrders = JSON.parse(poloOrders);
-        poloAsks = poloOrders.asks
+        var poloAsks = poloOrders.asks[0]
 
-        // console.log(poloAsks);
+        console.log(poloAsks[0]);
+        var newOrder = {
+        		type: 'asks',
+        	    rate: poloAsks[0],
+        	    quantity: poloAsks[1],
+                exchange: 'poloniex'
+            };
+
+            console.log(newOrder);
+
+            function addPoloOrders(obj) {
+            return pg('poloniex_asks').insert(obj)
+        }
+
+        addPoloOrders(newOrder);
+
+
+        // router.post('/api/poloniex', (req,res,next) =>{
+        //
+        //         queries.addPoloOrders(poloAsks)
+        //         .then(orders =>{
+        //             res.json(orders[0])
+        //         })
+        // });
+
+
 })
 });
 
+
+// router.post('/api/poloniex', (req, res) => {
+//
+// 	const order= {
+// 	   boo_title: req.body.book_title,
+// 		book_genre: req.body.book_genre,
+// 	    book_description: req.body.book_description,
+// 	    book_cover_url: req.body.book_cover_url
+// 	  }
+// 	    pg('books')
+// 	    .where('book_id', req.params.book_id)
+// 	    .update(books, 'book_id')
+// 	    .then(() => {
+// 	        res.redirect('/')
+// 	        })
+// 	      })
 
 
 module.exports = {

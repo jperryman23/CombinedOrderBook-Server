@@ -6,20 +6,33 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const pg = require('./db/knex')
 const router = express.Router();
-// const inserts = require('../db/queries');
 const https = require('https');
-
-const  request = require('request');
+const request = require('request');
+const cors = require('cors');
 
 // var url = require('url')
 // const ezc = require('express-zero-config');
 // const router = ezc.createRouter();
 // const fetch = require('node-fetch');
+// const inserts = require('../db/queries');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 const app = express();
+
+//MIDDLE WARE
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(logger('dev'));
+app.use(cookieParser());
 
+app.use(cors({
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}));
 
 var port = 5000;
 app.listen(port, () => {
@@ -27,18 +40,13 @@ app.listen(port, () => {
 });
 
 
+
 const orderbook = require('./api/orderbook');
 const poloniex = require('./api/poloniex');
 const bittrex = require('./api/bittrex');
 const gdax = require('./api/gdax');
+const knexQueries = require('./api/knexQueries');
 
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 
 //Mount the router
@@ -47,6 +55,7 @@ app.use('/api/orderbook', orderbook);
 app.use('/api/bittrex', bittrex);
 app.use('/api/poloniex', poloniex);
 app.use('/api/gdax', gdax);
+app.use('/api/knexQueries', knexQueries);
 
 
 
@@ -58,7 +67,19 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handler
+// development error handler
+
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+// Production error handler
 app.use(function(err, req, res, next) {
 
   res.status(err.status || 500);
@@ -69,29 +90,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-
-// const ezc = require('express-zero-config');
-// const request = require('request');
-// const router = ezc.createRouter();
-// const fetch = require('node-fetch');
-//
-// const url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10'
-// router.get('/', (req, res, next) =>{
-//     request('https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=10', function(err, result, body){
-//         console.log(body);
-//         const json = JSON.parse(body);
-//         res.json(json);
-//     })
-// })
-//
-// router.get('/fetchOrders', (req, res) =>{
-//     fetch(url)
-//     .then(function(res){
-//         return res.json();
-//     }).then(function(json){
-//         res.json(json);
-//     })
-// })
-//
-// ezc.startServer(router);

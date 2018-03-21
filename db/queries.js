@@ -28,18 +28,16 @@ module.exports = {
 
 
     deleteAllBittrex() {
-        return pg('bittrex_orderbook').del()
+        return pg('bittrex_orderbook').truncate()
     },
 
     deleteAllPolo() {
-        return pg('poloniex_orderbook').del()
+        return pg('poloniex_orderbook').truncate()
     },
 
     deleteAllGDAX() {
-        return pg('gdax_orderbook').del()
+        return pg('gdax_orderbook').truncate()
     },
-
-
 
 
     getOne(id) {
@@ -55,4 +53,18 @@ module.exports = {
     },
 
 
+    getPoloBids(){
+        return pg('poloniex_orderbook').select('*')
+    },
+
+    test(){
+        return pg('poloniex_orderbook').select().where('type', 'bids')
+    }
+
+    // router.get('/', (req, res) =>{
+    //     pg('poloniex_orderbook').select().where('type', 'bids')
+    //     .then(() => {
+    //         console.log(req);
+    //     })
+    // })
 }

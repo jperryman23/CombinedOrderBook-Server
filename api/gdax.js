@@ -53,5 +53,4 @@ publicClient.getProductOrderBook('ETH-BTC', { level: 3 } ).then(book => {
 
 })
 
-
 module.exports = router;

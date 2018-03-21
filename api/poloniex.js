@@ -6,6 +6,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const request = require('request');
 
+const pg = require('../db/knex')
 const app = express();
 
 app.use(bodyParser.json());
@@ -63,5 +64,7 @@ router.get('/', (req, response, next) => {
     })
 
 });
+
+
 
 module.exports = router;

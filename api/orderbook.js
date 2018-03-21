@@ -72,7 +72,10 @@ router.delete('/:id', isValidId,  (req, res) =>{
     })
 })
 
-
-
-
+// router.get('/', (req, res) =>{
+//     queries.test()
+//     .then(() => {
+//         console.log(req.params);
+//     })
+// })
 module.exports = router;

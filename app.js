@@ -30,6 +30,7 @@ app.listen(port, () => {
 const orderbook = require('./api/orderbook');
 const poloniex = require('./api/poloniex');
 const bittrex = require('./api/bittrex');
+const gdax = require('./api/gdax');
 
 
 // uncomment after placing your favicon in /public
@@ -45,6 +46,7 @@ app.use(cookieParser());
 app.use('/api/orderbook', orderbook);
 app.use('/api/bittrex', bittrex);
 app.use('/api/poloniex', poloniex);
+app.use('/api/gdax', gdax);
 
 
 

@@ -22,6 +22,11 @@ module.exports = {
         return pg('poloniex_orderbook').insert(order, '*');
     },
 
+    addOrderGDAX(order){
+        return pg('gdax_orderbook').insert(order, '*');
+    },
+
+
     deleteAllBittrex() {
         return pg('bittrex_orderbook').del()
     },
@@ -29,6 +34,12 @@ module.exports = {
     deleteAllPolo() {
         return pg('poloniex_orderbook').del()
     },
+
+    deleteAllGDAX() {
+        return pg('gdax_orderbook').del()
+    },
+
+
 
 
     getOne(id) {

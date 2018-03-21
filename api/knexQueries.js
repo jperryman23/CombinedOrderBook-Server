@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 // });
 
 router.get('/', (req, res) => {
-    console.log("working");
+    // console.log("working");
     pg('poloniex_orderbook')
     .select('quantity')
     .where('type', 'bids')
@@ -32,6 +32,20 @@ router.get('/', (req, res) => {
         res.send(knexqueries.map(({quantity}) => quantity))
     })
 })
+
+// router.get('/', (req, res) => {
+//     // console.log("working");
+//     pg('poloniex_orderbook')
+//     .select('quantity', 'rate')
+//     .where('type', 'bids')
+//     .then((knexqueries) =>{
+//         res.send(knexqueries.map(({quantity}) => quantity))
+//
+//     }).then((knexqueries =>{
+//         res.send(knexqueries.map(({rates}) => rates))
+//     }))
+// })
+
 
 
 

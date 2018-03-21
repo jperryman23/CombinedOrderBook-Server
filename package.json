@@ -15,6 +15,7 @@
     "express": "~4.15.5",
     "express-zero-config": "^1.1.2",
     "gdax": "^0.6.0",
+    "handlebars": "^4.0.11",
     "knex": "^0.14.4",
     "morgan": "~1.9.0",
     "node-fetch": "^2.1.1",

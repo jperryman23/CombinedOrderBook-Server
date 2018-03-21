@@ -19,6 +19,8 @@ const cors = require('cors');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
+
+
 const app = express();
 
 //MIDDLE WARE
@@ -30,7 +32,7 @@ app.use(logger('dev'));
 app.use(cookieParser());
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://127.0.0.1:8080',
   optionsSuccessStatus: 200
 }));
 
@@ -40,22 +42,25 @@ app.listen(port, () => {
 });
 
 
+// const poloOrders = require('./routes/poloOrders')
 
 const orderbook = require('./api/orderbook');
 const poloniex = require('./api/poloniex');
 const bittrex = require('./api/bittrex');
 const gdax = require('./api/gdax');
-const knexQueries = require('./api/knexQueries');
+const knexqueries = require('./api/knexqueries');
 
 
 
 //Mount the router
 
+// app.use('/routes/poloOrders', poloOrders)
+
 app.use('/api/orderbook', orderbook);
 app.use('/api/bittrex', bittrex);
 app.use('/api/poloniex', poloniex);
 app.use('/api/gdax', gdax);
-app.use('/api/knexQueries', knexQueries);
+app.use('/api/knexqueries', knexqueries);
 
 
 

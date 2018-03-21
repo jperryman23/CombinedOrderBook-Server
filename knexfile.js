@@ -2,10 +2,15 @@
 // require('dotenv').config()
 module.exports = {
 
-  development: {
-    client: 'pg',
-    connection: 'postgres://localhost/combined-order-book'
-},
+    development: {
+      client: 'postgres',
+      connection: 'postgres://localhost/combined-order-book'
+  },
+
+//   development: {
+//     client: 'pg',
+//     connection: 'postgres://localhost/combined-order-book'
+// },
 
   test: {
     client: 'pg',
@@ -13,10 +18,10 @@ module.exports = {
   },
 
 
-  production: {
-  client: 'pg',
-  connection: process.env.DATABASE_URL
-},
+//   production: {
+//   client: 'pg',
+//   connection: process.env.DATABASE_URL
+// },
 
 
 };

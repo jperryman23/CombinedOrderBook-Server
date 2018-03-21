@@ -21,6 +21,7 @@ router.get('/', (req, response, next) => {
 
 publicClient.getProductOrderBook('ETH-BTC', { level: 3 } ).then(book => {
     // response.json(book);
+    // top200Bids= book[0].slice(-200)  //bids
 
     const gdaxBids = book.bids.map((bid) =>{
         return {
@@ -30,6 +31,8 @@ publicClient.getProductOrderBook('ETH-BTC', { level: 3 } ).then(book => {
             exchange: 'gdax'
         }
     })
+
+    // top200Asks= book[1].slice(-200)
     const gdaxAsks = book.asks.map((ask) =>{
         return {
             type: 'asks',

@@ -1,5 +1,6 @@
 // const pg = require('./pg') the connection
 const pg = require('./knex')
+const  getPoloBids= require('../lib/validations').getPoloBids
 
 // module.exports = {
 //     getAll(){

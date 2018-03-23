@@ -9,7 +9,7 @@ const pg = require('./db/knex')
 const router = express.Router();
 const https = require('https');
 const request = require('request');
-const cors = require('cors');
+// const cors = require('cors');
 
 // var url = require('url')
 // const ezc = require('express-zero-config');
@@ -32,10 +32,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(logger('dev'));
 app.use(cookieParser());
 
-app.use(cors({
-  origin: 'http://127.0.0.1:8080',
-  optionsSuccessStatus: 200
-}));
+// app.use(cors({
+//   origin: 'https://s3-us-west-1.amazonaws.com',
+//   optionsSuccessStatus: 200
+// }));
 
 
 

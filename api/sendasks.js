@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
     .orderBy('rate', 'desc'),
     ])
     .then((orderbookAsks) =>{
-        console.log(orderbookAsks);
+        // console.log(orderbookAsks);
         res.send(orderbookAsks)
     })
 

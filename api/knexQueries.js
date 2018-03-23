@@ -36,69 +36,10 @@ router.get('/', (req, res) => {
     .having('id', '<', 101)
     ])
     .then((poloBids) =>{
-        console.log(poloBids);
+        // console.log(poloBids);
         res.send(poloBids)
     })
 
 })
 
 module.exports = router;
-// router.get('/', (req, res) => {
-//     // console.log("working");
-//     pg('poloniex_orderbook')
-//     .select('quantity')
-//     .where('type', 'bids')
-//     .then((knexqueries) =>{
-//         // console.log(knexQueries);
-//         res.send(knexqueries.map(({quantity}) => quantity))
-//     })
-// })
-
-
-// router.get('/', (req, res) => {
-//     pg('poloniex_orderbook')
-//     .select('rate')
-//     .where('type', 'bids')
-//     .then((knexqueries2) =>{
-//         // res.send(knexqueries2);
-//         res.send(knexqueries2.map(({rate}) => rate))
-//     })
-//
-// })
-
-//this limits the rows returned
-// router.get('/', (req, res) =>{
-//     pg('gdax_orderbook')
-//     .select()
-//     .groupBy('id')
-//     .having('id', '<', 200)
-//     .then((gdaxOrders) => {
-//         console.log(gdaxOrders);
-//     })
-// })
-
-
-// WHAT IS IDEAL but can't quite get the mapping right
-// router.get('/', (req, res) => {
-//     // console.log("working");
-//     pg('poloniex_orderbook', 'bittrex_orderbook', 'gdax_orderbook')
-//     .select('quantity', 'rate', 'exchange')
-//     .where('type', 'bids')
-//     .then((knexqueries) =>{
-//         res.send(knexqueries.map(({quantity}, {rate}, {exchange}) => quantity.rate.exchange???? lol )
-//     })
-// })
-
-
-// router.get('/', (req, res) => {
-//     // console.log("working");
-//     pg('poloniex_orderbook')
-//     .select('quantity', 'rate')
-//     .where('type', 'bids')
-//     .then((knexqueries) =>{
-//         res.send(knexqueries.map(({quantity}) => quantity))
-//
-//     }).then((knexqueries =>{
-//         res.send(knexqueries.map(({rates}) => rates))
-//     }))
-// })

@@ -36,10 +36,6 @@ app.use(cors({
   optionsSuccessStatus: 200
 }));
 
-var port = 5000;
-app.listen(port, () => {
-    console.log('API listening on port ' + port);
-});
 
 
 // const poloOrders = require('./routes/poloOrders')

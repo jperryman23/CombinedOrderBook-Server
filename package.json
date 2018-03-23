@@ -12,6 +12,7 @@
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
     "debug": "~2.6.9",
+    "dotenv": "^5.0.1",
     "express": "~4.15.5",
     "express-zero-config": "^1.1.2",
     "gdax": "^0.6.0",

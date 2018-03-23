@@ -28,3 +28,5 @@ build/Release
 node_modules
 
 # Debug log from npm
+
+.env

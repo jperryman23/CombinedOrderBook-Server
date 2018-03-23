@@ -18,7 +18,9 @@
 - [ ]  Actively updating the combined order book based on actual (live) trades from the exchanges Unit Tests
 
 ###### Heroku
-> https://combined-order-book.herokuapp.com/ | https://git.heroku.com/combined-order-book.git
+- https://combined-order-book.herokuapp.com/ | https://git.heroku.com/combined-order-book.git
+- https://combined-order-book.herokuapp.com/
+- Created postgresql-fitted-95639 as DATABASE_URL
 
 
 

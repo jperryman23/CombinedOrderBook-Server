@@ -21,8 +21,8 @@ router.get('/', (req, response, next) => {
 
 publicClient.getProductOrderBook('ETH-BTC', { level: 3 } ).then(book => {
     // response.json(book);
-    // top200Bids= book[0].slice(-200)  //bids
-
+    //var top200Bids  = Array.prototype.slice.call(book.bids, -200)
+    // console.log(top200Bids[0]);
     const gdaxBids = book.bids.map((bid) =>{
         return {
             type: 'bids',
@@ -32,7 +32,12 @@ publicClient.getProductOrderBook('ETH-BTC', { level: 3 } ).then(book => {
         }
     })
 
-    // top200Asks= book[1].slice(-200)
+    // after we get gdaxBids, we then want only the first 200 results
+
+    // var top200Bids  = Array.prototype.slice.call(gdaxBids, -200)
+    //     console.log(top200Bids);
+
+
     const gdaxAsks = book.asks.map((ask) =>{
         return {
             type: 'asks',

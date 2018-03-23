@@ -16,7 +16,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 //will run and update when you hit the route:
 // http://localhost:5000/api/poloniex
 
-let url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH'
+let url = 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=200'
+// https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_ETH&depth=200
 
 router.get('/', (req, response, next) => {
 

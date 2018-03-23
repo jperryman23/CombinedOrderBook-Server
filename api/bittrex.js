@@ -50,6 +50,33 @@ router.get('/', (req, response, next) => {
     })
 });
 
+//TICKER
+// https://bittrex.com/api/v1.1/public/getticker
+// Response
+// {
+// 	"success" : true,
+// 	"message" : "",
+// 	"result" : {
+// 		"Bid" : 2.05670368,
+// 		"Ask" : 3.35579531,
+// 		"Last" : 3.35579531
+// 	}
+// }
+
+// GET Market Summary / Volume 
+
+// https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-ltc
+
+
+// WOULD REQUIRE NPM PACKAGE
+
+// bittrex.getticker( { market : 'BTC-LTC' }, function( data, err ) {
+//   console.log( data );
+// });
+
+// bittrex.getorderbook({ market : 'BTC-LTC', depth : 10, type : 'both' }, function( data, err ) {
+//   console.log( data );
+// });
 
 
 module.exports = router;

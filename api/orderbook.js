@@ -25,12 +25,6 @@ function validOrder(order) {
     return hasType && hasExchange && hasExchange;
 }
 
-// router.get('/', (req, res) =>{
-//     queries.getAll().then(orderbook =>{
-//         res.json(orderbook[0])
-//     })
-// })
-
 
 
 router.get('/:id', isValidId, (req, res, next)=> {
@@ -44,7 +38,6 @@ router.get('/:id', isValidId, (req, res, next)=> {
 
     })
 })
-
 
 router.post('/', (req,res,next) =>{
     if(validOrder(req.body)){

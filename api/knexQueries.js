@@ -18,25 +18,53 @@ app.use(bodyParser.urlencoded({extended: false}));
 /// THIS IS WORKING SEND FOR JUST QUANTITY
 router.get('/', (req, res) => {
     // console.log("working");
+    Promise.all([
     pg('poloniex_orderbook')
-    .select('quantity')
+    .select('rate','quantity','exchange')
     .where('type', 'bids')
-    .then((knexqueries) =>{
-        // console.log(knexQueries);
-        res.send(knexqueries.map(({quantity}) => quantity))
+    .orderBy('rate', 'desc'),
+
+    pg('bittrex_orderbook')
+    .select('rate','quantity','exchange')
+    .where('type', 'bids')
+    .orderBy('rate', 'desc'),
+
+    pg('gdax_orderbook')
+    .select('rate','quantity','exchange')
+    .where('type', 'bids')
+    .groupBy('id')
+    .having('id', '<', 101)
+    ])
+    .then((poloBids) =>{
+        console.log(poloBids);
+        res.send(poloBids)
     })
+
 })
 
-router.get('/', (req, res) => {
-    pg('poloniex_orderbook')
-    .select('rate')
-    .where('type', 'bids')
-    .then((knexqueries2) =>{
-        // res.send(knexqueries2);
-        res.send(knexqueries2.map(({rate}) => rate))
-    })
+module.exports = router;
+// router.get('/', (req, res) => {
+//     // console.log("working");
+//     pg('poloniex_orderbook')
+//     .select('quantity')
+//     .where('type', 'bids')
+//     .then((knexqueries) =>{
+//         // console.log(knexQueries);
+//         res.send(knexqueries.map(({quantity}) => quantity))
+//     })
+// })
 
-})
+
+// router.get('/', (req, res) => {
+//     pg('poloniex_orderbook')
+//     .select('rate')
+//     .where('type', 'bids')
+//     .then((knexqueries2) =>{
+//         // res.send(knexqueries2);
+//         res.send(knexqueries2.map(({rate}) => rate))
+//     })
+//
+// })
 
 //this limits the rows returned
 // router.get('/', (req, res) =>{
@@ -74,10 +102,3 @@ router.get('/', (req, res) => {
 //         res.send(knexqueries.map(({rates}) => rates))
 //     }))
 // })
-
-
-
-
-
-
-module.exports = router;

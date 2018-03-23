@@ -49,6 +49,8 @@ const poloniex = require('./api/poloniex');
 const bittrex = require('./api/bittrex');
 const gdax = require('./api/gdax');
 const knexqueries = require('./api/knexqueries');
+const sendasks = require('./api/sendasks');
+
 
 
 
@@ -61,6 +63,7 @@ app.use('/api/bittrex', bittrex);
 app.use('/api/poloniex', poloniex);
 app.use('/api/gdax', gdax);
 app.use('/api/knexqueries', knexqueries);
+app.use('/api/sendasks', sendasks);
 
 
 

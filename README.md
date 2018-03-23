@@ -17,8 +17,8 @@
 - [ ] Highlight if the books overlap i.e bids on Bittrex overlap with Asks on  Poloniex or GDAX.
 - [ ]  Actively updating the combined order book based on actual (live) trades from the exchanges Unit Tests
 
-###### REMEMBER front end is simply HTML, CCS, JAVASCRIPT
-
+###### Heroku
+> https://combined-order-book.herokuapp.com/ | https://git.heroku.com/combined-order-book.git
 
 
 

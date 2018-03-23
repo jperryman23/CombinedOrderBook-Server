@@ -63,9 +63,7 @@ app.use('/api/knexqueries', knexqueries);
 app.use('/api/sendasks', sendasks);
 
 
-app.listen(process.env.PORT, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+
 
 
 // catch 404 and forward to error handler

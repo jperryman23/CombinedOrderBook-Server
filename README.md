@@ -1,6 +1,6 @@
 # Combined Order Book
 
-### Full Stack Coding Challenge
+
 
 #### Instructions:
 > Build a combined order book that takes the full order books from Bittrex and Poloniex for the BTC_ETH market and displays them in a way that shows combined volume at each price point.
@@ -18,11 +18,7 @@
 - [ ]  Actively updating the combined order book based on actual (live) trades from the exchanges Unit Tests
 
 ###### Heroku
-- https://combined-order-book.herokuapp.com/ | https://git.heroku.com/combined-order-book.git
-- https://combined-order-book.herokuapp.com/
-- Created postgresql-fitted-95639 as DATABASE_URL
-
-
+- https://combined-order-book.herokuapp.com/ 
 
 
 # CombinedOrderBook-Server
@@ -33,6 +29,3 @@
     - Knex.JS (for migration, seeds and queries)
     - Express.JS - for JSON Routes
     - Mocha, Chai and SuperTest - to test routes
-
-
->REMEMBER front end is simply HTML, CCS, JAVASCRIPT
